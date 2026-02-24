@@ -4,9 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Login></Login>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
 )
