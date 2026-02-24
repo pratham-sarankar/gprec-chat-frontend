@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Register() {
+    const [fullName, setFullName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <>
             <div className='flex flex-col items-center gap-3 min-h-screen justify-center'>
@@ -27,6 +31,7 @@ function Register() {
                         minLength="3"
                         maxLength="30"
                         title="Only letters, numbers or dash"
+                        onChange={(e) => { setFullName(e.target.value) }}
                     />
                 </label>
                 <label className="input validator">
@@ -50,6 +55,7 @@ function Register() {
                         minLength="3"
                         maxLength="30"
                         title="Only letters, numbers or dash"
+                        onChange={(e) => { setUsername(e.target.value) }}
                     />
                 </label>
                 <label className="input validator">
@@ -74,6 +80,7 @@ function Register() {
                         minLength="8"
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                         title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                        onChange={(e) => { setPassword(e.target.value) }}
                     />
                 </label>
                 <button className="btn btn-neutral w-80">Login</button>
