@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Login() {
+    const location = useLocation();
+    console.log(location.state.username);
+    console.log(location.state.password);
     return (
         <>
             <div className='flex flex-col items-center gap-3 min-h-screen justify-center'>
@@ -27,6 +30,7 @@ function Login() {
                         minLength="3"
                         maxLength="30"
                         title="Only letters, numbers or dash"
+                        value={location.state?.username || ''}
                     />
                 </label>
                 <label className="input validator">
@@ -51,6 +55,7 @@ function Login() {
                         minLength="8"
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                         title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                        value={location.state?.password || ''}
                     />
                 </label>
                 <button className="btn btn-neutral w-80">Login</button>

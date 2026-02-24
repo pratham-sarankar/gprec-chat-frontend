@@ -25,8 +25,9 @@ function Register() {
         };
 
         const response = await fetch("http://localhost:8080/register", requestOptions);
+        const result = await response.json();
         if (response.ok) {
-            navigate('/login');
+            navigate('/login', { state: result });
         }
     }
 
