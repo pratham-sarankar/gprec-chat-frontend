@@ -6,6 +6,28 @@ function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    async function handleOnClick() {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "fullName": fullName,
+            "username": username,
+            "password": password
+        });
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        const response = await fetch("http://localhost:8080/register", requestOptions);
+        const data = await response.json();
+        console.log(data);
+    }
+
     return (
         <>
             <div className='flex flex-col items-center gap-3 min-h-screen justify-center'>
@@ -83,7 +105,7 @@ function Register() {
                         onChange={(e) => { setPassword(e.target.value) }}
                     />
                 </label>
-                <button className="btn btn-neutral w-80">Login</button>
+                <button onClick={handleOnClick} className="btn btn-neutral w-80">Register</button>
                 <p>Already have an account? <Link className='link' to="/login">Login</Link></p>
             </div>
         </>
