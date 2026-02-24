@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Register() {
     const [fullName, setFullName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     async function handleOnClick() {
         const myHeaders = new Headers();
@@ -24,8 +25,9 @@ function Register() {
         };
 
         const response = await fetch("http://localhost:8080/register", requestOptions);
-        const data = await response.json();
-        console.log(data);
+        if (response.ok) {
+            navigate('/login');
+        }
     }
 
     return (
